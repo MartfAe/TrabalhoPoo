@@ -45,19 +45,20 @@ public class Product {
         return this.unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice){
+    // ADICIONADO 'final' PARA SUMIR O AVISO NO CONSTRUTOR
+    public final void setUnitPrice(double unitPrice){
         if(unitPrice<0){
             throw new IllegalArgumentException("Unit price cannot be negative");
         }
         this.unitPrice = unitPrice;
-        
     }
 
     public int getStockQuantity(){
         return this.stockQuantity;
     }
 
-    public void setStockQuantity(int stockQuantity){
+    // ADICIONADO 'final' PARA SUMIR O AVISO NO CONSTRUTOR
+    public final void setStockQuantity(int stockQuantity){
         if(stockQuantity<0){
             throw new IllegalArgumentException("Stock quantity cannot be negative");
         }
@@ -74,9 +75,4 @@ public class Product {
         }
         this.stockQuantity -=quantity;
     }
-
-
-
-    
-
 }
