@@ -23,6 +23,14 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+
+        //MARIADB CONFIGURADO PARA CONEXÃO COM O DOCKER
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
