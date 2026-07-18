@@ -38,7 +38,7 @@ public class Order {
         this.shippingPolicy = shippingPolicy;
     }
 
-    public void setPaymentMethode(Payable paymentMethode){
+    public void setPaymentMethod(Payable paymentMethode){
         this.paymentMethod = paymentMethode;
     }
 

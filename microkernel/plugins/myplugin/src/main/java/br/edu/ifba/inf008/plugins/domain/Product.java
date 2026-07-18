@@ -65,6 +65,15 @@ public class Product {
     }
 
 
+    public void reduceStock(int quantity){
+        if(quantity<=0){
+            throw new IllegalArgumentException("Quantity to reduce cannot be negative");
+        }
+        if(this.stockQuantity<quantity){
+            throw new IllegalArgumentException("Insufficient stock for product: "+this.name);
+        }
+        this.stockQuantity -=quantity;
+    }
 
 
 
