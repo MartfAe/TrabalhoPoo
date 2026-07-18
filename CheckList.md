@@ -23,7 +23,7 @@
 
 ### 🔹 3. Tratamento de Exceções Customizadas (Exceptions)
 - [x] **`InvalidPaymentException`**: Criada e sendo devidamente lançada no método `processOrderPayment()` da `Order`.
-- [ ] **`InsufficientStockException` (ou similar)**: Criar a classe e garantir que ela seja lançada no fluxo (atualmente `Product.reduceStock` lança `IllegalArgumentException`, o ideal para o critério do professor é usar uma exceção customizada própria).
+- [x] **`InsufficientStockException` (ou similar)**: Criar a classe e garantir que ela seja lançada no fluxo (atualmente `Product.reduceStock` lança `IllegalArgumentException`, o ideal para o critério do professor é usar uma exceção customizada própria).
 
 ### 🔹 4. Camada de Persistência (Integration & Database)
 - [x] **Configuração do Projeto (`pom.xml`)**: Dependência do Driver JDBC do MariaDB isolada corretamente dentro do `pom.xml` do seu plugin.

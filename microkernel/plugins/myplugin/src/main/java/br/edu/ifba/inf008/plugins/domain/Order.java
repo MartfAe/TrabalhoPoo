@@ -6,6 +6,7 @@ import br.edu.ifba.inf008.plugins.exceptions.InvalidPaymentException;
 import br.edu.ifba.inf008.plugins.model.discount.DiscountPolicy;
 import br.edu.ifba.inf008.plugins.model.payment.Payable;
 import br.edu.ifba.inf008.plugins.model.shipping.ShippingPolicy;
+import br.edu.ifba.inf008.plugins.exceptions.*;
 
 public class Order {
 
