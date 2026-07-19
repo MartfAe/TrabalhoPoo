@@ -18,19 +18,22 @@
             <artifactId>interfaces</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.3.3</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Configure maven-jar-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <!-- Change the output directory -->
                     <outputDirectory>${project.basedir}/../</outputDirectory>
-                    <!-- Change the JAR file name -->
                     <finalName>MyPlugin</finalName>
                 </configuration>
             </plugin>

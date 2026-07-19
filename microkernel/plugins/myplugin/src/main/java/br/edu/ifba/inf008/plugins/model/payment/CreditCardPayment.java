@@ -14,10 +14,10 @@ public class CreditCardPayment implements Payable {
         this.cvv = cvv;
     }
 
-    @Override
+   @Override
     public boolean processPayment(double amount){
         if(amount <= 0){
-            throw new IllegalArgumentException("Amount must be greater than zero");
+            return false; // Padronizado com Pix e Boleto
         }
 
         System.out.println("Processing credit card payment of amount $: " + amount);
@@ -28,4 +28,5 @@ public class CreditCardPayment implements Payable {
         System.out.println("Payment processed successfully.");
         return true;
     }
+
 }

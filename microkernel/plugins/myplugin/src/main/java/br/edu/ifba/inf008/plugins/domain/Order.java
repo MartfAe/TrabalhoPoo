@@ -1,11 +1,12 @@
 package br.edu.ifba.inf008.plugins.domain;
-import br.edu.ifba.inf008.plugins.model.discount.DiscountPolicy; 
-import br.edu.ifba.inf008.plugins.model.shipping.ShippingPolicy;
-import br.edu.ifba.inf008.plugins.model.payment.Payable;
-import br.edu.ifba.inf008.plugins.exceptions.InvalidPaymentException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.ifba.inf008.plugins.exceptions.InsufficientStockException;
+import br.edu.ifba.inf008.plugins.exceptions.InvalidPaymentException;
+import br.edu.ifba.inf008.plugins.model.discount.DiscountPolicy;
+import br.edu.ifba.inf008.plugins.model.payment.Payable;
+import br.edu.ifba.inf008.plugins.model.shipping.ShippingPolicy;
 
 public class Order {
 
@@ -38,7 +39,7 @@ public class Order {
         this.shippingPolicy = shippingPolicy;
     }
 
-    public void setPaymentMethode(Payable paymentMethode){
+    public void setPaymentMethod(Payable paymentMethode){
         this.paymentMethod = paymentMethode;
     }
 
@@ -81,7 +82,7 @@ public class Order {
 
     //Processa o pagamenot e atualiza o estoque
 
-    public void processOrderPayment() throws InvalidPaymentException{
+    public void processOrderPayment() throws InvalidPaymentException, InsufficientStockException{
         if(paymentMethod == null){
             throw new IllegalStateException("Payment method must be selected before processing.");
 

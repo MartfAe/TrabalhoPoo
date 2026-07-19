@@ -1,4 +1,5 @@
 package br.edu.ifba.inf008.plugins.domain;
+import br.edu.ifba.inf008.plugins.exceptions.InsufficientStockException;
 
 public class Product {
 
@@ -45,19 +46,18 @@ public class Product {
         return this.unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice){
+    public final void setUnitPrice(double unitPrice){
         if(unitPrice<0){
             throw new IllegalArgumentException("Unit price cannot be negative");
         }
         this.unitPrice = unitPrice;
-        
     }
 
     public int getStockQuantity(){
         return this.stockQuantity;
     }
 
-    public void setStockQuantity(int stockQuantity){
+    public final void setStockQuantity(int stockQuantity){
         if(stockQuantity<0){
             throw new IllegalArgumentException("Stock quantity cannot be negative");
         }
@@ -65,9 +65,13 @@ public class Product {
     }
 
 
-
-
-
-    
-
+    public void reduceStock(int quantity) throws InsufficientStockException{
+        if(quantity<=0){
+            throw new IllegalArgumentException("Quantity to reduce cannot be negative");
+        }
+        if(this.stockQuantity<quantity){
+            throw new InsufficientStockException("Insufficient stock for product: "+this.name);
+        }
+        this.stockQuantity -=quantity;
+    }
 }

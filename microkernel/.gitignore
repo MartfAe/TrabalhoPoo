@@ -1,0 +1,10 @@
+# Ignora todos os arquivos compilados do Maven
+target/
+
+# Ignora os JARs dos plugins (caso a pasta plugins não esteja dentro de target)
+plugins/*.jar
+
+# Ignora arquivos de configuração de IDEs (opcional, mas recomendado)
+.idea/
+*.iml
+.vscode/
