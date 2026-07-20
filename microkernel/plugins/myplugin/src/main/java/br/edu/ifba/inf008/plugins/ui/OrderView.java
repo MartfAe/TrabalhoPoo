@@ -1,5 +1,6 @@
 package br.edu.ifba.inf008.plugins.ui;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,8 @@ import br.edu.ifba.inf008.plugins.model.payment.PixPayment;
 import br.edu.ifba.inf008.plugins.model.shipping.ExpressShippingPolicy;
 import br.edu.ifba.inf008.plugins.model.shipping.ShippingPolicy;
 import br.edu.ifba.inf008.plugins.model.shipping.StandardShippingPolicy;
+import br.edu.ifba.inf008.plugins.repository.JdbcProductRepository;
+import br.edu.ifba.inf008.plugins.repository.ProductRepository;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -43,9 +46,11 @@ public class OrderView {
     private final Cart cart;
     private final TableView<Product> productTable;
     private TableView<OrderItem> cartTable;
+    private final ProductRepository productRepository;
 
     public OrderView() {
         this.cart = new Cart();
+        this.productRepository = new JdbcProductRepository();
         this.productTable = buildProductTable();
         this.root = new BorderPane();
 
@@ -112,18 +117,28 @@ public class OrderView {
         stockCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getStockQuantity()));
 
         table.getColumns().addAll(codeCol, nameCol, priceCol, stockCol);
-        table.setItems(loadSampleProducts());
-
+        table.setItems(loadProducts());
         return table;
     }
 
-    private ObservableList<Product> loadSampleProducts() {
-        List<Product> sample = Arrays.asList(
+    private ObservableList<Product> loadProducts() {
+        try {
+            List<Product> fromDatabase = productRepository.findAllActive();
+            if (!fromDatabase.isEmpty()) {
+                return FXCollections.observableArrayList(fromDatabase);
+            }
+        } catch (SQLException e) {
+            System.err.println("Could not load products from the database: " + e.getMessage());
+        }
+        return FXCollections.observableArrayList(sampleProducts());
+    }
+
+    private List<Product> sampleProducts() {
+        return Arrays.asList(
             new Product("Wireless Mouse", "P001", "Ergonomic wireless mouse", 89.90, 25),
             new Product("Mechanical Keyboard", "P002", "RGB mechanical keyboard", 249.90, 12),
             new Product("USB-C Hub", "P003", "7-in-1 USB-C hub", 129.90, 30)
         );
-        return FXCollections.observableArrayList(sample);
     }
 
     // ---------- Região central: carrinho (igual à Aula 3) ----------
