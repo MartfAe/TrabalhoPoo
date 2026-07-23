@@ -53,6 +53,12 @@ public class OrderView {
         this.productRepository = new JdbcProductRepository();
         this.productTable = buildProductTable();
         this.root = new BorderPane();
+        root.getStyleClass().add("order-view");
+
+        var stylesheet = getClass().getResource("/order-view.css");
+        if (stylesheet != null) {
+            root.getStylesheets().add(stylesheet.toExternalForm());
+        }
 
         root.setPadding(new Insets(10));
         root.setTop(buildProductSection());
@@ -68,14 +74,14 @@ public class OrderView {
 
     private VBox buildProductSection() {
         Label title = new Label("Available products");
-        title.setStyle("-fx-font-weight: bold;");
+        title.getStyleClass().add("section-title");
 
         Spinner<Integer> quantitySpinner = new Spinner<>(1, 999, 1);
         quantitySpinner.setEditable(true);
         quantitySpinner.setPrefWidth(80);
 
         Label feedbackLabel = new Label();
-        feedbackLabel.setStyle("-fx-text-fill: #cc0000;");
+        feedbackLabel.getStyleClass().add("feedback-error");
 
         Button addToCartButton = new Button("Add to cart");
         addToCartButton.setOnAction(e -> {
@@ -145,7 +151,7 @@ public class OrderView {
 
     private VBox buildCartSection() {
         Label title = new Label("Shopping cart");
-        title.setStyle("-fx-font-weight: bold;");
+        title.getStyleClass().add("section-title");
 
         cartTable = buildCartTable();
 
@@ -160,6 +166,7 @@ public class OrderView {
 
         VBox box = new VBox(8, title, cartTable, removeButton);
         box.setPadding(new Insets(10, 0, 10, 0));
+        title.getStyleClass().add("section-title");
         return box;
     }
 
@@ -188,7 +195,7 @@ public class OrderView {
 
     private VBox buildSummarySection() {
         Label title = new Label("Order summary");
-        title.setStyle("-fx-font-weight: bold;");
+        title.getStyleClass().add("section-title");
 
         ComboBox<String> discountCombo = new ComboBox<>(
             FXCollections.observableArrayList("None", "Coupon ($20 off)", "Student (15%)"));
@@ -223,8 +230,9 @@ public class OrderView {
         Label resultLabel = new Label();
 
         Button confirmButton = new Button("Confirm order");
+        confirmButton.getStyleClass().add("button-primary");
         confirmButton.setOnAction(e -> {
-            resultLabel.setStyle("-fx-text-fill: #cc0000;");
+            resultLabel.getStyleClass().setAll("feedback-error");
 
             if (cart.getItems().isEmpty()) {
                 resultLabel.setText("Your cart is empty.");
@@ -263,8 +271,7 @@ public class OrderView {
                 double total = order.calculateTotal();
                 order.processOrderPayment();
 
-                resultLabel.setStyle("-fx-text-fill: #2b8a3e;");
-                resultLabel.setText(String.format("Order paid! Total: %.2f - Status: %s", total, order.getStatus()));
+                resultLabel.getStyleClass().setAll("feedback-success");                resultLabel.setText(String.format("Order paid! Total: %.2f - Status: %s", total, order.getStatus()));
 
                 cart.clear();
                 refreshCartTable();
@@ -284,6 +291,8 @@ public class OrderView {
 
         VBox box = new VBox(8, title, combos, creditCardFields, confirmButton, resultLabel);
         box.setPadding(new Insets(10, 0, 0, 0));
+        title.getStyleClass().add("section-title");
+        title.getStyleClass().add("section-title");
         return box;
     }
 

@@ -1,0 +1,68 @@
+.order-view {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #FAFAFA;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1F2430;
+}
+
+.section-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E2E4E9;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 14px;
+}
+
+.table-view {
+    -fx-border-color: #E2E4E9;
+    -fx-border-radius: 6px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F1F3F5;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFBFC;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: derive(#2F5D8A, 85%);
+}
+
+.button {
+    -fx-background-radius: 6px;
+    -fx-padding: 6px 14px;
+    -fx-cursor: hand;
+}
+
+.button-primary {
+    -fx-background-color: #2F5D8A;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+}
+
+.button-primary:hover {
+    -fx-background-color: derive(#2F5D8A, -10%);
+}
+
+.feedback-error {
+    -fx-text-fill: #C0392B;
+    -fx-font-size: 12px;
+}
+
+.feedback-success {
+    -fx-text-fill: #2B8A3E;
+    -fx-font-weight: 600;
+}
